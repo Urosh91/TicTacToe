@@ -1,10 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login, authenticate
 
-from .forms import InvitationForm
+from .forms import InvitationForm, RegisterForm
 from .models import Invitation
 from gameplay.models import Game
 
@@ -21,7 +20,7 @@ def home(request):
 
 def register_view(request):
     if request.method == "POST":
-        form = UserCreationForm(request.POST)
+        form = RegisterForm(request.POST)
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get("username")
@@ -30,7 +29,7 @@ def register_view(request):
             login(request, user)
             return redirect("player_home")
     else:
-        form = UserCreationForm()
+        form = RegisterForm()
     return render(request, "player/user_registration_form.html", {"form": form})
 
 

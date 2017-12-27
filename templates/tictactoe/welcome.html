@@ -7,8 +7,12 @@
 {% block content %}
     <div class="jumbotron">
         <div class="container">
-            <h1>Hello, I wanna play a game!</h1>
-            <p>Let's play Tic Tac Toe</p>
+            <h1 align="center">Welcome to TicTacToe</h1>
+            <h2 align="center">Best place to hone your skills in your favourite pastime game.</h2>
+            <br>
+            <br>
+            <p>Please <a href="{% url 'player_registration' %}">register</a> to continue, or
+                <a href="{% url 'player_login' %}">login</a> if you already have an account.</p>
         </div>
 
     </div>
